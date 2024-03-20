@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Builder;
 using System.Text;
 using Atividade02.Proposals.Infrastructure;
 using Atividade02.Proposals.Application;
+using Atividade02.Core.MessageBus.Configurations;
+using Atividade02.Proposals.API.Configurations.Serilog;
+using Atividade02.Proposals.API.BackgroundServices;
 
 namespace Atividade02.Proposals.API.Configurations
 {
@@ -15,11 +18,17 @@ namespace Atividade02.Proposals.API.Configurations
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
-            ApiInjection(services);
+            services.AddHostedService<ProposalSentEventWorker>();
+            services.AddHostedService<ProposalCreatedEventWorker>();
+            services.AddHostedService<PreAnalysisPolicySuccessfullyExecutedEventWorker>();
+            services.AddHostedService<FraudAnalysisPolicySuccessfullyExecutedEventWorker>();
+
+            ApiInjection(services, configuration);
         }
 
-        public static void UseApiConfiguration(this WebApplication app)
+        public static void UseApiConfiguration(this WebApplication app, IConfiguration configuration)
         {
+            app.UseLogs(configuration);
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -34,9 +43,9 @@ namespace Atividade02.Proposals.API.Configurations
             app.MapControllers();
         }
 
-        private static void ApiInjection(this IServiceCollection services)
+        private static void ApiInjection(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddProposalInfrastructure();
+            services.AddProposalInfrastructure(configuration);
             services.AddProposalApplication();
         }
     }

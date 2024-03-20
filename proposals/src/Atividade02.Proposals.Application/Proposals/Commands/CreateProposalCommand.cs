@@ -3,12 +3,21 @@ using System.Runtime.Serialization;
 using Atividade02.Core.Common.CQRS;
 
 namespace Atividade02.Proposals.Application.Proposals.Commands
-{ 
+{
     [DataContract]
     public class CreateProposalCommand : Command
     {
-        public CreateProposalCommand(string name, string cpf, string cnpj, string ddd, string cellphone, string? notes = null)
+        public CreateProposalCommand(
+             Guid aggregateId,
+             string name,
+             string cpf,
+             string cnpj,
+             string ddd,
+             string cellphone,
+             string? notes = null
+         )  
         {
+            AggregateId = aggregateId;
             Name = name;
             CPF = cpf;
             CNPJ = cnpj;
@@ -34,7 +43,6 @@ namespace Atividade02.Proposals.Application.Proposals.Commands
 
         [DataMember]
         public string? Notes { get; private set; }
-
     }
 }
 

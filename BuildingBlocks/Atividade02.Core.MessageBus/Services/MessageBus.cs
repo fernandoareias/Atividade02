@@ -107,11 +107,11 @@ public class MessageBus : IMessageBus
 
     public void Subscribe<TMessage>(string exchange, string routingKey, Func<TMessage, Task> function, CancellationToken stoppingToken)
     {
-       _consumerChannel = connection.CreateModel();
-       DeclareQueueAndExchange(routingKey, exchange, _consumerChannel);
+       var consumerChannel = connection.CreateModel();
+       DeclareQueueAndExchange(routingKey, exchange, consumerChannel);
 
-       var consumer = new EventingBasicConsumer(_consumerChannel);
-       _consumerChannel.BasicConsume(queue: routingKey, autoAck: false, consumer: consumer);
+       var consumer = new EventingBasicConsumer(consumerChannel);
+        consumerChannel.BasicConsume(queue: routingKey, autoAck: false, consumer: consumer);
         
        consumer.Received += async (sender, eventArgs) =>
        {
@@ -125,12 +125,12 @@ public class MessageBus : IMessageBus
 
                await function(args);
 
-               _consumerChannel.BasicAck(eventArgs.DeliveryTag, false);
+               consumerChannel.BasicAck(eventArgs.DeliveryTag, false);
            }
            catch (Exception ex)
            {
                Console.WriteLine($"[SUBSCRIBE][EXCEPTION] - Exchange: {exchange} | Queue: {routingKey} | RoutingKey: {routingKey} | Exception {ex.Message}");
-               _consumerChannel.BasicNack(eventArgs.DeliveryTag, false, true);
+               consumerChannel.BasicNack(eventArgs.DeliveryTag, false, true);
            }
        };
 

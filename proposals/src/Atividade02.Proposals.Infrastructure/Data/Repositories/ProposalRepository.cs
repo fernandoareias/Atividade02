@@ -20,11 +20,34 @@ namespace Atividade02.Proposals.Infrastructure.Data.Repositories
 
         public async Task<Proposal> Get(string cpf, string cnpj)
         {
-            var data = await DbSet.FindAsync(Builders<Proposal>.Filter.Eq("_id", cpf));
-            return data.SingleOrDefault();
+            var options = new FindOptions<Proposal>
+            {
+                MaxTime = TimeSpan.FromSeconds(5) // Defina o tempo limite desejado
+            };
+
+            var filter = Builders<Proposal>.Filter.And(
+                Builders<Proposal>.Filter.Eq("Proponent.CPF.Number", cpf),
+                Builders<Proposal>.Filter.Eq("Store.cnpj", cnpj)
+                );
+             
+            var data = await DbSet.FindAsync(filter, options);
+
+            return data.FirstOrDefault();
         }
 
-      
+        public async Task<Proposal?> GetByAggregateId(string aggregateId)
+        {
+            var options = new FindOptions<Proposal>
+            {
+                MaxTime = TimeSpan.FromSeconds(5) // Defina o tempo limite desejado
+            };
+
+            var filter = Builders<Proposal>.Filter.Eq("AggregateId", aggregateId);
+
+            var data = await DbSet.FindAsync(filter, options);
+
+            return data.FirstOrDefault();
+        }
     }
 }
 

@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Atividade02.Proposals.Application.Proposals.Events.Handlers
 {
-    public class ProposalCreatedEventHandlers : INotificationHandler<ProposalCreatedEvent>
+    public class ProposalCreatedEventHandlers : INotificationHandler<Domain.Proposals.Events.ProposalSentEvent>
     {
         private readonly IMediatorHandler _mediatorHandler;
 
@@ -14,7 +14,7 @@ namespace Atividade02.Proposals.Application.Proposals.Events.Handlers
             _mediatorHandler = mediatorHandler;
         }
 
-        public async Task Handle(ProposalCreatedEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(Domain.Proposals.Events.ProposalSentEvent notification, CancellationToken cancellationToken)
         {
             var command = new ExecutePreAnalysisCommand(notification.Id);
 

@@ -6,62 +6,91 @@ using Atividade02.Proposals.Domain.Proposals.Entities.Policies.Events.Factories;
 using Atividade02.Proposals.Domain.Proposals.Entities.Policies.Events.Formalization.Factories;
 using Atividade02.Proposals.Domain.Proposals.Entities.Stores;
 using Atividade02.Proposals.Domain.Proposals.Enums;
+using Atividade02.Proposals.Domain.Proposals.Events;
 using Atividade02.Proposals.Domain.Proposals.Services;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Atividade02.Proposals.Domain.Proposals
 {
     public class Proposal : AggregateRoot
     {
-        public Proposal(Proponent proponent, Store store, string? notes = null)
+        public Proposal()
         {
+
+        }
+
+        public Proposal(Guid aggregateId, Proponent proponent, Store store, string? notes = null)
+        {
+            AggregateId = aggregateId.ToString();
             Code = GenerateCode();
             Proponent = proponent;
             Store = store;
             Notes = notes;
+
+            AddEvent(new ProposalSentEvent(AggregateId, Proponent.CPF.Number, Store.CNPJ));
+        }
+        [BsonConstructor]
+        protected Proposal(string code, EProposalStatus status, string? notes, Proponent proponent, Store store, List<PreAnalysisPolicy> preAnalysis, List<FraudAnalysisPolicy> fraudAnalysis, List<FormalizationPolicy> formalizations)
+        {
+            Code = code;
+            Status = status;
+            Notes = notes;
+            Proponent = proponent;
+            Store = store;
+            PreAnalysis = preAnalysis;
+            FraudAnalysis = fraudAnalysis;
+            Formalizations = formalizations;
         }
 
-
+        [BsonElement("Code")]
         public string Code {
             get;
             private set;
         }
 
+        [BsonElement("Status")]
         public EProposalStatus Status
         {
             get;
             private set;
         } = EProposalStatus.PROCESSING;
 
+        [BsonElement("Notes")]
         public string? Notes
         {
             get;
             private set;
         }
 
+        [BsonElement("Proponent")]
         public Proponent Proponent
         {
             get;
             private set;
         }
 
+        [BsonElement("Store")]
         public Store Store
         {
             get;
             private set;
         }
 
+        [BsonElement("PreAnalysis")]
         public List<PreAnalysisPolicy> PreAnalysis
         {
             get;
             private set;
         } = new List<PreAnalysisPolicy>();
 
+        [BsonElement("FraudAnalysis")]
         public List<FraudAnalysisPolicy> FraudAnalysis
         {
             get;
             private set;
         } = new List<FraudAnalysisPolicy>();
 
+        [BsonElement("Formalizations")]
         public List<FormalizationPolicy> Formalizations
         {
             get;
@@ -85,7 +114,7 @@ namespace Atividade02.Proposals.Domain.Proposals
                 do
                 {
                     randomChar = chars[random.Next(chars.Length)];
-                } while (randomChar == lastChar); // Garante que o mesmo caractere não seja repetido consecutivamente
+                } while (randomChar == lastChar);
 
                 sb.Append(randomChar);
                 lastChar = randomChar;
@@ -106,7 +135,7 @@ namespace Atividade02.Proposals.Domain.Proposals
             PreAnalysis.Add(policy);
         }
 
-        public async void Execute(IFraudAnalysisPolicyServices domainService)
+        public async Task Execute(IFraudAnalysisPolicyServices domainService)
         {
             var policy = await domainService.Process(this);
 
@@ -121,7 +150,7 @@ namespace Atividade02.Proposals.Domain.Proposals
 
         }
 
-        public async void Execute(IFormalizationPolicyServices domainService)
+        public async Task Execute(IFormalizationPolicyServices domainService)
         {
             var policy = await domainService.Process(this);
 
@@ -134,6 +163,8 @@ namespace Atividade02.Proposals.Domain.Proposals
 
         private void ChangeStatus(EProposalStatus status)
         {
+            if (status == EProposalStatus.APPROVED)
+                AddEvent(new ProposalApprovedEvent(this));
             Status = status;
         }
 

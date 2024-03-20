@@ -8,7 +8,7 @@ namespace Atividade02.Proposals.Domain.Proposals.Entities.Policies.Events
     public class FraudAnalysisPolicySuccessfullyExecutedEvent : Event
     {
         public FraudAnalysisPolicySuccessfullyExecutedEvent(string proposalId, string policyId)
-            : base("policy-executed", "policy-fraud-analysis-executed-successfull")
+            : base("proposals", "policy-fraud-analysis-executed-successfull")
         {
             if (string.IsNullOrWhiteSpace(proposalId))
                 throw new ArgumentException(nameof(proposalId));

@@ -16,32 +16,20 @@ public class CreditAnalysisEngineServices : ICreditAnalysisEngineServices
 
     public async Task<ExecuteFormalizationResponse> ExecuteFormalization(ExecuteFormalizationRequest request)
     {
-        return await _messageBus.RPCClient<ExecuteFormalizationResponse>(
-           "credit-analysis-engine",
-           "execute-formalization",
-           request.CorrelationId,
-           request
-           );
+        return new ExecuteFormalizationResponse(Guid.NewGuid().ToString(), "APPROVED");
     }
 
     public async Task<ExecuteFraudAnalysisResponse> ExecuteFraudAnalysis(ExecuteFraudAnalysisRequest request)
     {
-        return await _messageBus.RPCClient<ExecuteFraudAnalysisResponse>(
-           "credit-analysis-engine",
-           "execute-fraud-analysis",
-           request.CorrelationId,
-           request
-           );
+        if (request.CPF == "14270066792")
+            return new ExecuteFraudAnalysisResponse(Guid.NewGuid().ToString(), "APPROVED");
+        else
+            return new ExecuteFraudAnalysisResponse(Guid.NewGuid().ToString(), "REJECTED");
     }
 
     public async Task<ExecutePreAnalysisResponse> ExecutePreAnalysis(ExecutePreAnalysisRequest request)
     {
-        return await _messageBus.RPCClient<ExecutePreAnalysisResponse>(
-            "credit-analysis-engine",
-            "execute-pre-analysis",
-            request.CorrelationId,
-            request
-            );
+        return new ExecutePreAnalysisResponse(Guid.NewGuid().ToString(), "APPROVED", 1200);
     }
 }
 

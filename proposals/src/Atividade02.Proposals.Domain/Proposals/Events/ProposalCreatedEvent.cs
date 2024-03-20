@@ -3,11 +3,11 @@ using Atividade02.Core.Common.CQRS;
 
 namespace Atividade02.Proposals.Domain.Proposals.Events
 {
-    public class ProposalCreatedEvent : Event
+    public class ProposalSentEvent : Event
     {
-        public ProposalCreatedEvent(string id, string cpf, string cnpj)
+        public ProposalSentEvent(string id, string cpf, string cnpj)
             :
-        base("proposals", "proposal-created")
+        base("proposals", "proposal-create")
         {
             Id = id;
             CPF = cpf;

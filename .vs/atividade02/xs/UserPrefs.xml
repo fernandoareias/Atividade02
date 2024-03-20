@@ -1,0 +1,121 @@
+﻿<Properties StartupConfiguration="{6CB15014-9CAD-4889-A5A4-2E07008056FC}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.proponent.tests.Atividade02.Proponent.API.Tests FirstBuild="True" />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{6CB15014-9CAD-4889-A5A4-2E07008056FC}" ItemName="Atividade02.Proponent.API" ConfigurationId="Default" />
+        <StartupItem ItemId="{CA7DCCA4-58E7-4C5A-802A-5BE6C24ECD7A}" ItemName="Atividade02.Proposals.API" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.ItemProperties.proponent.src.Atividade02.Proponent.API PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.proposal.src.0_220-_220Apresentation.Atividade02.Proposals.API PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.Workbench ActiveDocument="proponent/src/Atividade02.Proponent.API/Data/Common/Interfaces/IMongoContext.cs">
+    <Files>
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Handlers/ExecuteFraudAnalysisPolicyCommandHandler.cs" Line="36" Column="6" IsPinned="True" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain.Services/Services/FraudAnalysisPolicyServices.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain.Services/Services/FormalizationPolicyServices.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Infrastructure/Gateways/CreditAnalysisEngines/GatewayCreditAnalysisEngine.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Infrastructure.ExternalServices.CreditAnalysisEngine/Services/CreditAnalysisEngineServices.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Handlers/ExecutePreAnalysisCommandHandlers.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/BackgroundServices/ProposalCreatedEventWorker.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Events/Handlers/ProposalCreatedEventHandlers.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/ExecutePreAnalysisCommand.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/SendProposalCommand.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/BackgroundServices/ProposalSentEventWorker.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Events/Handlers/ProposalSentEventHandler.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Handlers/CreateProposalCommandHandler.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/appsettings.json" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/Middlewares/ExceptionMiddleware.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/Controllers/ProposalController.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Handlers/SendProposalCommandHandlers.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/Configurations/Serilog/EnricherLog.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/Program.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Infrastructure/Data/MongoContext.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Proponents/Proponent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Proponents/ValueObjects/CPF.cs" />
+      <File FileName="BuildingBlocks/Atividade02.Core.MessageBus/Services/MessageBus.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain.Services/Services/PreAnalysisPolicyServices.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Services/IFraudAnalysisPolicyServices.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Services/IFormalizationPolicyServices.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Validators/ExecuteFormalizationPolicyCommandValidations.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Validators/ExecuteFraudAnalysisPolicyCommandValidations.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Handlers/ExecuteFormalizationPolicyCommandHandler.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Events/ProposalCreatedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/BackgroundServices/PreAnalysisPolicySuccessfullyExecutedEventWorker.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Events/PreAnalysis/PreAnalysisPolicyErroExecutedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Events/FraudAnalysisPolicy/FraudAnalysisPolicyPolicyErroExecutedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Events/Formalization/FormalizedProposalApprovedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Events/Formalization/FormalizedProposalDerivedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Events/Formalization/FormalizedProposalRejectedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Events/Formalization/FormalizedProposalErroExecutedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/BackgroundServices/FraudAnalysisPolicySuccessfullyExecutedEventWorker.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Events/Handlers/PreAnalysisPolicySuccessfullyExecutedEventHandler.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Events/Handlers/FraudAnalysisPolicySuccessfullyExecutedEventHandler.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/Configurations/ApiConfiguration.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Common/EPolicyStatus.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Proposal.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Events/ProposalApprovedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Events/ProposalDisapprovedEvent.cs" />
+      <File FileName="proposals/src/Atividade02.Proposals.API/Configurations/Serilog/SerilogConfigurations.cs" />
+      <File FileName="proponent/tests/Atividade02.Proponent.API.Tests/UnitTest1.cs" />
+      <File FileName="proponent/src/Atividade02.Proponent.API/Controllers/CommonController.cs" />
+      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Common/Interfaces/IMongoContext.cs" Line="10" Column="21" />
+      <File FileName="proponent/src/Atividade02.Proponent.API/BackgroundServices/ProposalApprovedEventWorker.cs" Line="2" Column="11" />
+      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Repositories/Common/IRepository.cs" Line="2" Column="36" />
+      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Repositories/Common/IUnitOfWork.cs" Line="2" Column="36" />
+      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Repositories/BaseRepository.cs" Line="1" Column="37" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="atividade02" expanded="True">
+            <Node name="BuildingBlocks" expanded="True" />
+            <Node name="proponent" expanded="True">
+              <Node name="src">
+                <Node name="Atividade02.Proponent.API">
+                  <Node name="BackgroundServices" expanded="True" />
+                  <Node name="Controllers" expanded="True" />
+                  <Node name="Data">
+                    <Node name="Common" expanded="True">
+                      <Node name="Interfaces" expanded="True">
+                        <Node name="IMongoContext.cs" selected="True" />
+                      </Node>
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+            <Node name="proposal" expanded="True">
+              <Node name="src">
+                <Node name="2 - Domain" expanded="True">
+                  <Node name="Atividade02.Proposals.Domain" expanded="True">
+                    <Node name="Proposals" expanded="True">
+                      <Node name="Repositories" expanded="True">
+                        <Node name="Common" expanded="True" />
+                      </Node>
+                    </Node>
+                  </Node>
+                </Node>
+                <Node name="3 - Infrastructure" expanded="True">
+                  <Node name="Atividade02.Proposals.Infrastructure">
+                    <Node name="Data" expanded="True" />
+                    <Node name="Gateways" expanded="True">
+                      <Node name="CreditAnalysisEngines" expanded="True" />
+                    </Node>
+                  </Node>
+                  <Node name="Atividade02.Proposals.Infrastructure.ExternalServices.CreditAnalysisEngine">
+                    <Node name="Services" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

@@ -8,7 +8,7 @@ namespace Atividade02.Proposals.Domain.Proposals.Entities.Policies.Events
     public class PreAnalysisPolicySuccessfullyExecutedEvent : Event
     {
         public PreAnalysisPolicySuccessfullyExecutedEvent(string proposalId, string policyId)
-            : base("policy-executed", "policy-preanalysis-executed-successfull")
+            : base("proposals", "policy-preanalysis-executed-successfull")
         {
             if (string.IsNullOrWhiteSpace(proposalId))
                 throw new ArgumentException(nameof(proposalId));

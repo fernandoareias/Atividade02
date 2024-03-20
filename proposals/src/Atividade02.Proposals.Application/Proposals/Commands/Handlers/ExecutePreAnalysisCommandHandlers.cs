@@ -20,7 +20,7 @@ namespace Atividade02.Proposals.Application.Proposals.Commands.Handlers
 
         public async Task<View> Handle(ExecutePreAnalysisCommand request, CancellationToken cancellationToken)
         {
-            Proposal? proposal = await _proposalRepository.GetById(request.Id);
+            Proposal? proposal = await _proposalRepository.GetByAggregateId(request.Id);
 
             if (proposal is null)
                 throw new InvalidOperationException("Proposal not exist!");

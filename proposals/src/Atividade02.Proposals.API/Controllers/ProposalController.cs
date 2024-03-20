@@ -3,6 +3,7 @@ using Atividade02.Core.Common.Validators.Interfaces;
 using Atividade02.Core.Mediator.Interfaces;
 using Atividade02.Proposals.API.DTOs.Requests;
 using Atividade02.Proposals.Application.Proposals.Commands;
+using Atividade02.Proposals.Application.Proposals.Commands.Views;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Atividade02.Proposals.API.Controllers
@@ -50,9 +51,10 @@ namespace Atividade02.Proposals.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateProposalRequest request)
+        public async Task<IActionResult> Send([FromHeader(Name = "correlation-id")]Guid correlationid, [FromBody] CreateProposalRequest request)
         {
-            var response = await _mediatorHandler.Send<CreateProposalCommand>(new CreateProposalCommand(
+            var response = await _mediatorHandler.Send<SendProposalCommand>(new SendProposalCommand(
+                correlationid,
                 request.Name,
                 request.CPF,
                 request.CNPJ,
@@ -60,9 +62,10 @@ namespace Atividade02.Proposals.API.Controllers
                 request.Cellphone
             ));
 
-            
+            if (response is null && HasError)
+                return ReturnBadRequestWithErrors<SendProposalCommandView>();
 
-            return Ok(null);
+            return Accepted(response);
         }
 
 

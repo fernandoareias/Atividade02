@@ -7,6 +7,7 @@ namespace Atividade02.Proposals.Domain.Proposals.Repositories
     public interface IProposalRepository : IRepository<Proposal>
     {
         Task<Proposal> Get(string cpf, string cnpj);
+        Task<Proposal?> GetByAggregateId(string aggregateId);
         
     }
 }

@@ -28,15 +28,16 @@ namespace Atividade02.Proposals.API.BackgroundServices
                 {
                     var messageBus = scope.ServiceProvider.GetRequiredService<IMessageBus>();
 
-                    messageBus.Subscribe<ProposalCreatedEvent>("proposals", "proposal-created", Process,
+                    messageBus.Subscribe<ProposalSentEvent>("proposals", "proposal-create", Process,
                         stoppingToken);
+
                     await Task.Delay(-1, stoppingToken);
                 }
             }
         }
 
 
-        private async Task Process(ProposalCreatedEvent request)
+        private async Task Process(ProposalSentEvent request)
         {
             using (var scope = _serviceProvider.CreateScope())
             {

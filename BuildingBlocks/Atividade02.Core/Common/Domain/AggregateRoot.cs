@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -5,22 +6,23 @@ namespace Atividade02.Core.Common.CQRS;
 
 public abstract class AggregateRoot : Entity
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId _id
+    
+    protected AggregateRoot()
     {
-        get;
-        protected set;
-    } = ObjectId.GenerateNewId();
 
+    }
+     
+    [BsonElement("AggregateId")]
     public string AggregateId
     {
         get;
-        private set;
+        protected set;
     }
 
 
+    [BsonIgnore]
     private List<Event> _events = new List<Event>();
+    [BsonIgnore]
     public IReadOnlyCollection<Event> Events => _events;
 
     public void AddEvent(Event @event)

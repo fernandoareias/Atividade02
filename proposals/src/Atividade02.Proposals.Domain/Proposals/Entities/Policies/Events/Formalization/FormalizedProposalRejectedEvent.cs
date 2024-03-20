@@ -8,7 +8,7 @@ namespace Atividade02.Proposals.Domain.Proposals.Entities.Policies.Events.Formal
     public class FormalizedProposalRejectedEvent : Event
     {
         public FormalizedProposalRejectedEvent(string proposalId, string externalId)
-            : base("formalized-proposal", "formalized-proposal-rejected")
+            : base("proposals", "formalized-proposal-rejected")
         {
             if (string.IsNullOrWhiteSpace(proposalId))
                 throw new ArgumentException(nameof(proposalId));

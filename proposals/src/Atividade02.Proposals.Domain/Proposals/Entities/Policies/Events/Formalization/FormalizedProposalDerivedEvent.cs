@@ -8,7 +8,7 @@ namespace Atividade02.Proposals.Domain.Proposals.Entities.Policies.Events.Formal
     public class FormalizedProposalDerivedEvent : Event
     {
         public FormalizedProposalDerivedEvent(string proposalId, string externalId)
-            : base("formalized-proposal", "formalized-proposal-derived")
+            : base("proposals", "formalized-proposal-derived")
         {
             if (string.IsNullOrWhiteSpace(proposalId))
                 throw new ArgumentException(nameof(proposalId));

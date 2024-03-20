@@ -8,7 +8,7 @@ namespace Atividade02.Proposals.Domain.Proposals.Entities.Policies.Events.Formal
     public class FormalizedProposalApprovedEvent : Event
     {
         public FormalizedProposalApprovedEvent(string proposalId, string externalId)
-            : base("formalized-proposal", "formalized-proposal-approved")
+            : base("proposals", "formalized-proposal-approved")
         {
             if (string.IsNullOrWhiteSpace(proposalId))
                 throw new ArgumentException(nameof(proposalId));

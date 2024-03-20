@@ -1,5 +1,6 @@
 ﻿using System;
 using Atividade02.Core.Common.CQRS;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Atividade02.Proposals.Domain.Proposals.Entities.Stores
 {
@@ -8,20 +9,24 @@ namespace Atividade02.Proposals.Domain.Proposals.Entities.Stores
         protected Store()
         {
         }
-
-        public Store(FantasyName name, CNPJ myProperty)
+        [BsonConstructor]
+        protected Store(string name, string cnpj)
         {
             Name = name;
-            MyProperty = myProperty;
+            CNPJ = cnpj;
         }
 
-        public FantasyName Name
+        //FantasyName
+        [BsonElement("name")]
+        public string Name
         {
             get;
             private set;
         }
 
-        public CNPJ MyProperty
+        //CNPJ
+        [BsonElement("cnpj")]
+        public string CNPJ
         {
             get;
             private set;

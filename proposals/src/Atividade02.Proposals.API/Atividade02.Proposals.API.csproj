@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+		<PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+		<PackageReference Include="Serilog.Exceptions" Version="8.3.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.4.1" />
+		<PackageReference Include="Elastic.CommonSchema.Serilog" Version="1.5.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +22,7 @@
     <None Remove="DTOs\" />
     <None Remove="DTOs\Requests\" />
     <None Remove="BackgroundServices\" />
+    <None Remove="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configurations\" />
@@ -23,6 +30,7 @@
     <Folder Include="DTOs\" />
     <Folder Include="DTOs\Requests\" />
     <Folder Include="BackgroundServices\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Atividade02.Core\Atividade02.Core.csproj">

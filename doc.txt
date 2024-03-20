@@ -1,0 +1,10 @@
+/** 
+* Paste one or more documents here
+*/
+{
+  "_id": {
+    "$oid": "65f9b994d947ac0184a9be12"
+  },
+  "cnpj": "18524535000127",
+  "name": "Store Example"
+}
