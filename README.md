@@ -1,53 +1,44 @@
-# NiFi Data Integration and Migration POC Readme
+# Atividade02
 
-## Prerequisites
+Aluno: Fernando Areias
 
-Before running the POC, ensure you have the following installed:
+E-mail: nando.calheirosx@gmail.com
 
-- Apache NiFi - For orchestrating data flows.
-- PostgreSQL - As the primary database system.
-- Debezium - For change data capture.
-- Apache Kafka - For messaging and streaming data.
-- ZooKeeper - Required for Kafka coordination.
-- Kafka UI - Optional UI for monitoring Kafka topics.
-- NiFi Registry - For version control and management of NiFi flows.
-
-## Running the POC
+## Rodando o projeto
 
 `docker-compose up --build`
 
-### Executing After Applications are Up in Docker Compose
+Após iniciar o docker-compose crie o banco de dados ProposalsDB e a collection Store no mongo e insira esse documento
 
-Once all the applications are up and running within Docker Compose, an additional step is required to properly configure the system. Follow the steps below:
+```
+{
+"\_id": {
+"$oid": "65f9b994d947ac0184a9be12"
+},
+"cnpj": "18524535000127",
+"name": "Store Example"
+}
 
-1. Ensure all applications are up by running Docker Compose.
+```
 
-2. Execute the CURL command as defined in the **connector/request_config.txt** file to perform the final system configuration.
+Depois disso, você pode rodar as chamadas da collection do postman
 
-# Applications
+## Aplicações
 
-| Application  | Host                                 |
-| :----------- | :----------------------------------- |
-| NIFI         | http://localhost:8080/nifi           |
-| NIFI REGISTR | http://localhost:18080/nifi-registry |
-| POSTGRESQL   | http://localhost:5432                |
-| DEBEZIUM     | http://localhost:8083                |
-| KAFKA        | http://localhost:9092                |
-| KAFKA UI     | http://localhost:9090                |
-| ZOOKEEPER    | http://localhost:2181                |
+| Application  | Host                   |
+| :----------- | :--------------------- |
+| MS Proposta  | http://localhost:5155  |
+| MS Portador  | http://localhost:5030  |
+| Mongodb      | http://localhost:27017 |
+| RabbitMQ     | http://localhost:5672  |
+| ADM RabbitMQ | http://localhost:15672 |
 
-## Contributing
+## Documentação
 
-If you'd like to contribute to this POC, feel free to fork the repository, make your changes, and submit a pull request. Contributions, suggestions, and improvements are welcome!
+### Diagramas
 
-## License
+`documentacao/Atividade02.drawio.xml`
 
-This POC is licensed under the [MIT License](LICENSE).
+### Postman collection
 
-## Disclaimer
-
-This POC is provided as-is without any warranties. It's intended for demonstration and educational purposes only. Use it at your own risk.
-
-## Contact
-
-For any questions or inquiries, please contact [maintainer email or username].
+`documentacao/Atividade02.postman_collection.json`

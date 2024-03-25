@@ -22,9 +22,14 @@ namespace Atividade02.Proposals.Application.Proposals.Queries
 
             public GetListProposalByFilterQueryProposalShortView(Proposal proposal)
             {
+                AggregateId = proposal.AggregateId;
                 Code = proposal.Code;
                 Status = proposal.Status.ToString();
             }
+
+
+            [DataMember]
+            public string AggregateId { get; private set; } = null!;
 
             [DataMember]
             public string Code { get; private set; } = null!;

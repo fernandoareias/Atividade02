@@ -1,24 +1,24 @@
 ﻿<Properties StartupConfiguration="{CA7DCCA4-58E7-4C5A-802A-5BE6C24ECD7A}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
+  <DisabledProjects>
+    <String>portador/src/Atividade02.Proponent.API/Atividade02.Portador.API.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.ItemProperties.proposal.src.0_220-_220Apresentation.Atividade02.Proposals.API PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MultiItemStartupConfigurations>
     <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
       <Items>
-        <StartupItem ItemId="{6CB15014-9CAD-4889-A5A4-2E07008056FC}" ItemName="Atividade02.Proponent.API" ConfigurationId="Default" />
         <StartupItem ItemId="{CA7DCCA4-58E7-4C5A-802A-5BE6C24ECD7A}" ItemName="Atividade02.Proposals.API" ConfigurationId="Default" />
       </Items>
     </MultiItemSolutionRunConfiguration>
   </MultiItemStartupConfigurations>
-  <MonoDevelop.Ide.ItemProperties.proponent.src.Atividade02.Proponent.API PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.proposal.src.0_220-_220Apresentation.Atividade02.Proposals.API PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BuildingBlocks/Atividade02.Core.MessageBus/Services/MessageBus.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="portador/src/Atividade02.Portador.API/Dockerfile">
     <Files>
       <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Handlers/ExecuteFraudAnalysisPolicyCommandHandler.cs" Line="36" Column="6" IsPinned="True" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Proposal.cs" Line="22" Column="25" IsPinned="True" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Models/Proponent.cs" Line="7" Column="33" IsPinned="True" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain.Services/Services/FraudAnalysisPolicyServices.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain.Services/Services/FormalizationPolicyServices.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Infrastructure.ExternalServices.CreditAnalysisEngine/Services/CreditAnalysisEngineServices.cs" />
@@ -38,7 +38,7 @@
       <File FileName="proposals/src/Atividade02.Proposals.API/Program.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Infrastructure/Data/MongoContext.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Proponents/ValueObjects/CPF.cs" />
-      <File FileName="BuildingBlocks/Atividade02.Core.MessageBus/Services/MessageBus.cs" Line="58" Column="1" />
+      <File FileName="BuildingBlocks/Atividade02.Core.MessageBus/Services/MessageBus.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain.Services/Services/PreAnalysisPolicyServices.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Services/IFraudAnalysisPolicyServices.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Services/IFormalizationPolicyServices.cs" />
@@ -58,50 +58,31 @@
       <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Policies/Common/EPolicyStatus.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Events/ProposalDisapprovedEvent.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.API/Configurations/Serilog/SerilogConfigurations.cs" />
-      <File FileName="proponent/tests/Atividade02.Proponent.API.Tests/UnitTest1.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Controllers/CommonController.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Common/Interfaces/IMongoContext.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Repositories/Common/IRepository.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Repositories/Common/IUnitOfWork.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Data/MongoContext.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Domain/Proposals/Entities/Proponents/Proponent.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Repositories/ProponentRepository.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Data/Repositories/BaseRepository.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Models/Interfaces/Services/IProponentServices.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Program.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Configurations/Serilog/EnricherLog.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Configurations/Serilog/SerilogConfigurations.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/BackgroundServices/ProposalApprovedEventWorker.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Infrastructure/ProposalsInfrastructureIoC.cs" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/appsettings.json" />
-      <File FileName="proponent/src/Atividade02.Proponent.API/Services/ProponentServices.cs" />
       <File FileName="BuildingBlocks/Atividade02.Core/Common/Domain/AggregateRoot.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Infrastructure/Gateways/CreditAnalysisEngines/GatewayCreditAnalysisEngine.cs" />
       <File FileName="proposals/tests/Atividade02.Proposals.Application.Tests/UnitTest1.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/CreateProposalCommand.cs" />
       <File FileName="proposals/tests/Atividade02.Proposals.Application.Tests/Proposals/Commands/CreateProposalCommandTests.cs" />
       <File FileName="proposals/src/Atividade02.Proposals.Application/Proposals/Commands/Validators/CreateProposalCommandValidations.cs" />
-      <File FileName="docker-compose.yaml" Line="1" Column="1" />
+      <File FileName="docker-compose.yaml" />
+      <File FileName="portador/src/Atividade02.Portador.API/Dockerfile" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="atividade02" expanded="True">
-            <Node name="BuildingBlocks" expanded="True">
-              <Node name="MessageBus" expanded="True">
-                <Node name="Atividade02.Core.MessageBus">
-                  <Node name="Services" expanded="True" />
-                </Node>
+          <Node name="atividade02">
+            <Node name="BuildingBlocks" expanded="True" />
+            <Node name="portador" expanded="True">
+              <Node name="src" expanded="True">
+                <Node name="Atividade02.Portador.API" selected="True" />
               </Node>
             </Node>
-            <Node name="infra" expanded="True" />
             <Node name="proposal" expanded="True">
               <Node name="src" expanded="True">
-                <Node name="0 - Apresentation" expanded="True">
-                  <Node name="Atividade02.Proposals.API" selected="True" />
-                </Node>
                 <Node name="1 - Application" expanded="True">
-                  <Node name="Atividade02.Proposals.Application">
+                  <Node name="Atividade02.Proposals.Application" expanded="True">
                     <Node name="Proposals" expanded="True">
                       <Node name="Commands" expanded="True">
                         <Node name="Handlers" expanded="True" />
@@ -116,5 +97,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

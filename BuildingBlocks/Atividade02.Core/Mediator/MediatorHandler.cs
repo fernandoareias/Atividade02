@@ -13,6 +13,11 @@ public class MediatorHandler : IMediatorHandler
         _mediator = mediator;
     }
 
+    public async Task<View> Execute<TQuery>(TQuery query) where TQuery : Query
+    {
+        return await _mediator.Send(query);
+    }
+
     public async Task Publish<TEvent>(TEvent @event) where TEvent : Event
     {
         await _mediator.Publish(@event);
@@ -21,11 +26,6 @@ public class MediatorHandler : IMediatorHandler
     public async Task<View> Send<TCommand>(Command command) where TCommand : Command
     {
         return await _mediator.Send(command);
-    }
-
-    public async Task<List<View>> Execute<TQuery>(TQuery query) where TQuery : Query
-    {
-        return await _mediator.Send(query);
     }
 
 }

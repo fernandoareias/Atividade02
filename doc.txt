@@ -15,6 +15,10 @@ Database ProposalsDB
 Store 
 
 
-82235c61-60e2-4141-9c6d-3f5abcffb4a5
+Aprovado 
+16421400078
+82235c61-60e2-4141-9c6d-3f5abcffb4a6
 
-27ad82e9-5a17-4deb-a2be-53cc8c3e1476
+Reprovado
+69771147030
+27ad82e9-5a17-4deb-a2be-53cc8c3e1475

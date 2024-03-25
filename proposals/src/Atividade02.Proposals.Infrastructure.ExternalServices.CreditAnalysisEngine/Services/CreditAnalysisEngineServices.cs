@@ -16,12 +16,12 @@ public class CreditAnalysisEngineServices : ICreditAnalysisEngineServices
 
     public async Task<ExecuteFormalizationResponse> ExecuteFormalization(ExecuteFormalizationRequest request)
     {
-        return new ExecuteFormalizationResponse(Guid.NewGuid().ToString(), "APPROVED");
+        return new ExecuteFormalizationResponse(Guid.NewGuid().ToString(), request.Status);
     }
 
     public async Task<ExecuteFraudAnalysisResponse> ExecuteFraudAnalysis(ExecuteFraudAnalysisRequest request)
     {
-        if (request.CPF == "14270066792")
+        if (request.CPF == "16421400078")
             return new ExecuteFraudAnalysisResponse(Guid.NewGuid().ToString(), "APPROVED");
         else
             return new ExecuteFraudAnalysisResponse(Guid.NewGuid().ToString(), "REJECTED");

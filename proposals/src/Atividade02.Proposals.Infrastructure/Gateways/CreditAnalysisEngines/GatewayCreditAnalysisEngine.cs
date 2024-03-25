@@ -18,13 +18,25 @@ namespace Atividade02.Proposals.Infrastructure.Gateways.CreditAnalysisEngines
 
         public async Task<ExecuteFormalizationResponseDTO> ExecuteFormalization(Proposal proposal)
         {
-           // var request = new ExecuteFormalizationRequest(
-               
-           //);
 
-            var response = await _creditAnalysisEngineServices.ExecuteFormalization(null);
+            var proponentRequest = new ExecuteFormalizationRequest.ExecuteFormalizationProponenteRequest(
+                proposal.Proponent.Cellphone.DDD,
+                proposal.Proponent.Cellphone.Number,
+                proposal.Proponent.Name.Value,
+                proposal.Proponent.CPF.Number);
 
-            if (response is null) return null;
+            var storeRequest = new ExecuteFormalizationRequest.ExecuteFormalizationStoreRequest(proposal.Store.Name, proposal.Store.CNPJ);
+
+            var request = new ExecuteFormalizationRequest(
+                proposal.Status.ToString(),
+                proponentRequest,
+                storeRequest,
+                proposal.AggregateId
+            );
+
+            var response = await _creditAnalysisEngineServices.ExecuteFormalization(request);
+
+            if (response is null) return null!;
 
             return new ExecuteFormalizationResponseDTO(
                 response.ExternalId,
@@ -49,13 +61,13 @@ namespace Atividade02.Proposals.Infrastructure.Gateways.CreditAnalysisEngines
 
             return new ExecuteFraudAnalysisResponseDTO(
                 response.ExternalId,
-                response.Result 
+                response.Result
             );
         }
 
         public async Task<ExecutePreAnalysisResponseDTO> ExecutePreAnalysis(Proposal proposal)
         {
-            
+
             var request = new ExecutePreAnalysisRequest(
                 proposal.Proponent.Name.Value,
                 proposal.Proponent.CPF.Number,

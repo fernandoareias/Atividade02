@@ -17,27 +17,21 @@ services:
     depends_on:
       - rabbitmq
 
-  proponent-api:
+  portador-api:
     image: proponent-api:1.0
     build:
       context: .
-      dockerfile: proponent/src/Atividade02.Proponent.API/Dockerfile
+      dockerfile: portador/src/Atividade02.Portador.API/Dockerfile
     networks:
       - common.network
+    ports:
+      - "5030:80"
     cpu_shares: 215
     cpu_quota: 50000
     mem_limit: 120m
     env_file: env.conf
     depends_on:
       - rabbitmq
-
-  redis:
-    image: redis
-    command: redis-server --requirepass Redis2019!
-    networks:
-      - common.network
-    ports:
-      - "6379:6379"
 
   mongo1:
     image: mongo:7.0
