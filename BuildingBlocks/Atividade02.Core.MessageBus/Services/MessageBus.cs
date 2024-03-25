@@ -2,7 +2,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using Atividade02.Core.Common.CQRS;
+using Atividade02.Core.Common.Domain;
 using Atividade02.Core.MessageBus.Configurations;
+using Atividade02.Core.MessageBus.DTOs;
 using Atividade02.Core.MessageBus.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -18,11 +20,11 @@ public class MessageBus : IMessageBus
 {
     public MessageBus(IOptions<MessageBusConfigs> config, ILogger<MessageBus> logger)
     {
-        _busConfigs = config.Value; 
+        _busConfigs = config.Value;
         _logger = logger;
         factory = new ConnectionFactory { Uri = new Uri(_busConfigs.Host) };
     }
-    
+
     private bool _isConnected = false;
     private IConnection _connection;
     private IModel _consumerChannel;
@@ -30,10 +32,10 @@ public class MessageBus : IMessageBus
 
     private readonly IDictionary<string, string> _exchange = new Dictionary<string, string>();
     private readonly IDictionary<string, string> _routingKeys = new Dictionary<string, string>();
-    
+
     private readonly MessageBusConfigs _busConfigs;
     private readonly ILogger<MessageBus> _logger;
-    
+
     private IConnection connection
     {
         get
@@ -44,7 +46,7 @@ public class MessageBus : IMessageBus
             return _connection;
         }
     }
-    
+
     public void Connect()
     {
         var policy = RetryPolicy.Handle<SocketException>().Or<BrokerUnreachableException>()
@@ -59,15 +61,15 @@ public class MessageBus : IMessageBus
             _isConnected = true;
         });
     }
-    
+
     private void DeclareQueueAndExchange(string routingKey, string exchangeName, IModel channel, string? type = ExchangeType.Direct)
     {
         bool containsExchange = _exchange.ContainsKey(exchangeName);
-        bool containsRoutingKey = containsExchange && _routingKeys.ContainsKey(routingKey);
+        bool containsRoutingKey = _routingKeys.ContainsKey(routingKey);
 
         if (containsExchange && containsRoutingKey) return;
-         
-        if (!containsExchange!)
+
+        if (!containsExchange)
         {
             channel.ExchangeDeclare(exchange: exchangeName, type: type, durable: true);
             _exchange.Add(exchangeName, exchangeName);
@@ -80,17 +82,17 @@ public class MessageBus : IMessageBus
             channel.QueueBind(queue: routingKey, exchange: exchangeName, routingKey: routingKey);
             _routingKeys.Add(routingKey, routingKey);
         }
-        
+
     }
 
-    public void Publish(string exchange, string routingKey, dynamic command)
-    { 
+    public void Publish(string exchange, string queue, dynamic command)
+    {
         using (var channel = connection.CreateModel())
         {
-            DeclareQueueAndExchange(routingKey, exchange, channel);
-            
+            DeclareQueueAndExchange(queue, exchange, channel);
+
             string commandJson = JsonSerializer.Serialize(command);
-            _logger.LogInformation($"[PUBLISH] - Exchange: {exchange} | Type: {ExchangeType.Direct.ToString()} | Queue: {routingKey} | RoutingKey: {routingKey} | Message: {commandJson}");
+            _logger.LogInformation($"[PUBLISH] - Exchange: {exchange} | Type: {ExchangeType.Direct.ToString()} | Queue: {queue} | RoutingKey: {queue} | Message: {commandJson}");
 
             var body = Encoding.UTF8.GetBytes(commandJson);
 
@@ -98,43 +100,50 @@ public class MessageBus : IMessageBus
             properties.Persistent = true;
             properties.Headers = new Dictionary<string, object>
             {
-                { "X-Retry-Count", 0 } 
+                { "X-Retry-Count", 0 }
             };
 
-            channel.BasicPublish(exchange: exchange, routingKey: routingKey, basicProperties: properties, body: body);
+            channel.BasicPublish(exchange: exchange, routingKey: queue, basicProperties: properties, body: body);
         }
     }
 
-    public void Subscribe<TMessage>(string exchange, string routingKey, Func<TMessage, Task> function, CancellationToken stoppingToken)
+    public void Subscribe<TMessage>(string exchange, string queue, Func<TMessage, Task> function, CancellationToken stoppingToken)
     {
-       var consumerChannel = connection.CreateModel();
-       DeclareQueueAndExchange(routingKey, exchange, consumerChannel);
+        var consumerChannel = connection.CreateModel();
+        DeclareQueueAndExchange(queue, exchange, consumerChannel);
 
-       var consumer = new EventingBasicConsumer(consumerChannel);
-        consumerChannel.BasicConsume(queue: routingKey, autoAck: false, consumer: consumer);
-        
-       consumer.Received += async (sender, eventArgs) =>
-       {
-           try
-           {
-               var messageBody = eventArgs.Body.ToArray();
-               var messageJson = Encoding.UTF8.GetString(messageBody);
-               var args = JsonSerializer.Deserialize<TMessage>(messageJson);
-               Console.WriteLine(
-                   $"[SUBSCRIBE] - Exchange: {exchange} | Type: {ExchangeType.Direct.ToString()} | Queue: {routingKey} | RoutingKey: {routingKey} | Message: {messageJson}");
+        var consumer = new EventingBasicConsumer(consumerChannel);
+        consumerChannel.BasicConsume(queue: queue, autoAck: false, consumer: consumer);
 
-               await function(args);
+        consumer.Received += async (sender, eventArgs) =>
+        {
+            var messageBody = eventArgs.Body.ToArray();
+            var messageJson = Encoding.UTF8.GetString(messageBody);
+            try
+            {
 
-               consumerChannel.BasicAck(eventArgs.DeliveryTag, false);
-           }
-           catch (Exception ex)
-           {
-               Console.WriteLine($"[SUBSCRIBE][EXCEPTION] - Exchange: {exchange} | Queue: {routingKey} | RoutingKey: {routingKey} | Exception {ex.Message}");
-               consumerChannel.BasicNack(eventArgs.DeliveryTag, false, true);
-           }
-       };
+                var args = JsonSerializer.Deserialize<TMessage>(messageJson);
+                _logger.LogInformation(
+                    $"[SUBSCRIBE] - Exchange: {exchange} | Type: {ExchangeType.Direct.ToString()} | Queue: {queue} | RoutingKey: {queue} | Message: {messageJson}");
 
-       
+                await function(args);
+
+                consumerChannel.BasicAck(eventArgs.DeliveryTag, false);
+            }
+            catch (DomainException domainException)
+            {
+                _logger.LogError($"[SUBSCRIBE][EXCEPTION] - Exchange: {exchange} | Queue: {queue} | RoutingKey: {queue} | Exception {domainException}");
+                Publish(exchange + "-dead", queue + "-dead", new FailProcessCommand(messageJson, $"{domainException}"));
+                consumerChannel.BasicNack(eventArgs.DeliveryTag, false, false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"[SUBSCRIBE][EXCEPTION] - Exchange: {exchange} | Queue: {queue} | RoutingKey: {queue} | Exception {ex}");
+                consumerChannel.BasicNack(eventArgs.DeliveryTag, false, true);
+            }
+        };
+
+
     }
 
     public Task<TResult> RPCClient<TResult>(string exchange, string routingKey, string correlationId, dynamic command)
@@ -160,7 +169,7 @@ public class MessageBus : IMessageBus
             }
             catch (Exception ex)
             {
-                _logger.LogInformation($"[RPC][CONSUME][EXCEPTION] - Exception: {ex}");
+                _logger.LogError($"[RPC][CONSUME][EXCEPTION] - Exception: {ex}");
             }
         };
 
@@ -177,7 +186,7 @@ public class MessageBus : IMessageBus
 
         properties.Persistent = true;
         properties.CorrelationId = correlationId;
-        properties.ReplyTo = replyQueueName; 
+        properties.ReplyTo = replyQueueName;
 
         channel.BasicPublish(exchange: exchange,
                              routingKey: routingKey,
@@ -227,5 +236,5 @@ public class MessageBus : IMessageBus
         _consumerChannel?.Dispose();
     }
 
-    
+
 }

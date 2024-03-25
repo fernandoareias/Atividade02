@@ -8,7 +8,7 @@ namespace Atividade02.Proposals.Domain.Proposals.Repositories
     {
         Task<Proposal> Get(string cpf, string cnpj);
         Task<Proposal?> GetByAggregateId(string aggregateId);
-        
+
     }
 }
 

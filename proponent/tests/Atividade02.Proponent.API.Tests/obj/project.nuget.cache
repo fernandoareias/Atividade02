@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JXDwzbrsxo9U+0AdAhQgOMGXpuiU0y6ly0rSeIylxP1gAs9rL7QvDXoUHd5QldFd56jyzzGCKzadqm+Sb8IL9g==",
+  "dgSpecHash": "Zm90WjmKxKfY7es/zSArnSE3ZydhvwwVyRO99OUfpC6awuD1sxy+EpQWCAFkxk6bsQtTp6dEEoBa0nbd6a8Gxg==",
   "success": true,
   "projectFilePath": "/Users/f.areias/Documents/faculdade/Atividade02/proponent/tests/Atividade02.Proponent.API.Tests/Atividade02.Proponent.API.Tests.csproj",
   "expectedPackageFiles": [
@@ -95,7 +95,9 @@
     "/Users/f.areias/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/Users/f.areias/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/Users/f.areias/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/Users/f.areias/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "/Users/f.areias/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "/Users/f.areias/.nuget/packages/microsoft.netcore.app.ref/6.0.27/microsoft.netcore.app.ref.6.0.27.nupkg.sha512",
+    "/Users/f.areias/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.27/microsoft.aspnetcore.app.ref.6.0.27.nupkg.sha512"
   ],
   "logs": []
 }

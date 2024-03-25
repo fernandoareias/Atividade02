@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GSQqpr+I7nSnim5EneqnoihmIXoRNy6GX6xAuX+0JC9BBW1RxsmcRN8ybkTPzt8PspYe75GkOik3f+Q+GRY5ug==",
+  "dgSpecHash": "SWugJjchLUMXonnfWPdDC5WrkTrsBV6b/VzEjQArte6kVhWwDal6u14ceiRfNzPr3XfFKMbcKSduTTLEfC7/AQ==",
   "success": true,
   "projectFilePath": "/Users/f.areias/Documents/faculdade/Atividade02/proponent/src/Atividade02.Proponent.API/Atividade02.Proponent.API.csproj",
   "expectedPackageFiles": [
@@ -110,7 +110,10 @@
     "/Users/f.areias/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
     "/Users/f.areias/.nuget/packages/system.threading.tasks/4.0.11/system.threading.tasks.4.0.11.nupkg.sha512",
     "/Users/f.areias/.nuget/packages/system.threading.timer/4.0.1/system.threading.timer.4.0.1.nupkg.sha512",
-    "/Users/f.areias/.nuget/packages/zstdsharp.port/0.7.3/zstdsharp.port.0.7.3.nupkg.sha512"
+    "/Users/f.areias/.nuget/packages/zstdsharp.port/0.7.3/zstdsharp.port.0.7.3.nupkg.sha512",
+    "/Users/f.areias/.nuget/packages/microsoft.netcore.app.ref/6.0.27/microsoft.netcore.app.ref.6.0.27.nupkg.sha512",
+    "/Users/f.areias/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.27/microsoft.aspnetcore.app.ref.6.0.27.nupkg.sha512",
+    "/Users/f.areias/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.27/microsoft.netcore.app.host.osx-arm64.6.0.27.nupkg.sha512"
   ],
   "logs": [
     {

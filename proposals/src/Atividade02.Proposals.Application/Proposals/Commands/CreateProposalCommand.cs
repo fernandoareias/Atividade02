@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Atividade02.Core.Common.CQRS;
+using Atividade02.Proposals.Application.Proposals.Commands.Validators;
 
 namespace Atividade02.Proposals.Application.Proposals.Commands
 {
@@ -43,6 +44,12 @@ namespace Atividade02.Proposals.Application.Proposals.Commands
 
         [DataMember]
         public string? Notes { get; private set; }
+
+
+        public override bool IsValid()
+        {
+            return new CreateProposalCommandValidations().Validate(this).Errors.Any() is false;
+        }
     }
 }
 

@@ -4,6 +4,7 @@ using Atividade02.Core.Mediator.Interfaces;
 using Atividade02.Proposals.API.DTOs.Requests;
 using Atividade02.Proposals.Application.Proposals.Commands;
 using Atividade02.Proposals.Application.Proposals.Commands.Views;
+using Atividade02.Proposals.Application.Proposals.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Atividade02.Proposals.API.Controllers
@@ -29,9 +30,11 @@ namespace Atividade02.Proposals.API.Controllers
         /// <param name="cnpj"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] string cpf, [FromQuery] string cnpj)
+        public async Task<IActionResult> Get([FromQuery] string? cpf, [FromQuery] string? cnpj)
         {
-            return Ok(null);
+            var response = await _mediatorHandler.Execute(new GetListProposalByFilterQuery(cpf, cnpj));
+
+            return Ok(response);
         }
 
         /// <summary>
@@ -39,10 +42,14 @@ namespace Atividade02.Proposals.API.Controllers
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        [HttpGet("{code}")]
-        public async Task<IActionResult> GetById(string code)
+        [HttpGet("{aggregateId}")]
+        public async Task<IActionResult> GetById(string aggregateId)
         {
-            return Ok(null);
+            var response = await _mediatorHandler.Execute(new GetProposalByAggregateIdQuery(aggregateId));
+
+            if (response is null) return NotFound();
+
+            return Ok(response);
         }
 
         /// <summary>
@@ -51,7 +58,7 @@ namespace Atividade02.Proposals.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Send([FromHeader(Name = "correlation-id")]Guid correlationid, [FromBody] CreateProposalRequest request)
+        public async Task<IActionResult> Send([FromHeader(Name = "correlation-id")] Guid correlationid, [FromBody] CreateProposalRequest request)
         {
             var response = await _mediatorHandler.Send<SendProposalCommand>(new SendProposalCommand(
                 correlationid,

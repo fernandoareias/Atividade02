@@ -10,7 +10,8 @@ namespace Atividade02.Proposals.Application.Proposals.Commands.Validators
             RuleFor(c => c.Name)
                 .MaximumLength(125)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty()
+                .Must(c => c.Split(" ").Length >= 2);
 
             RuleFor(c => c.CPF)
                 .Length(11)

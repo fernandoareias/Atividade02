@@ -8,3 +8,13 @@
   "cnpj": "18524535000127",
   "name": "Store Example"
 }
+
+
+Database ProposalsDB
+
+Store 
+
+
+82235c61-60e2-4141-9c6d-3f5abcffb4a5
+
+27ad82e9-5a17-4deb-a2be-53cc8c3e1476
