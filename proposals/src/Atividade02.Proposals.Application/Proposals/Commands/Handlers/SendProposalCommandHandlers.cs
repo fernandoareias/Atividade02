@@ -28,10 +28,10 @@ namespace Atividade02.Proposals.Application.Proposals.Commands.Handlers
 
         public async Task<View> Handle(SendProposalCommand request, CancellationToken cancellationToken)
         {
-            Proposal proposal = await _proposalRepository.Get(request.CPF, request.CNPJ);
+            // Proposal proposal = await _proposalRepository.Get(request.CPF, request.CNPJ);
 
-            if (proposal is not null)
-                return new CreateProposalCommandView(proposal.AggregateId, proposal.Status.ToString());
+            // if (proposal is not null)
+            //     return new CreateProposalCommandView(proposal.AggregateId, proposal.Status.ToString());
 
             var @event = new ProposalSentEvent(
                 request.AggregateId,
